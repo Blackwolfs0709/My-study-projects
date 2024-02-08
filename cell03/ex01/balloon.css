@@ -1,0 +1,37 @@
+
+    
+    .balao {
+      width: 200px;
+      height: 200px;
+      background-color: red;
+      border-radius: 50%; 
+      cursor: pointer; /* Muda icone do mouse*/
+      transition: all 0.3s ease; /*Delay para mudança*/
+    }
+
+    /* Mouse sobre */
+    .balao:hover {
+      width: 195px;
+      height: 195px;
+    }
+
+    
+    .balao.expandido {
+      width: 210px;
+      height: 210px;
+    }
+
+    
+    .balao.vermelho {
+      background-color: red;
+    }
+
+    
+    .balao.verde {
+      background-color: green;
+    }
+
+    
+    .balao.azul {
+      background-color: blue;
+    }

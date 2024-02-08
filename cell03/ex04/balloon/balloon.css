@@ -1,0 +1,37 @@
+
+    /* Estilizando o balão */
+    .balao {
+      width: 200px;
+      height: 200px;
+      background-color: red;
+      border-radius: 50%; /* Deixa as bordas arredondadas para criar a forma redonda */
+      cursor: pointer; /* Muda o cursor para indicar que é clicável */
+      transition: all 0.3s ease; /* Adiciona transição suave para as mudanças */
+    }
+
+    /* Estilizando o balão quando o mouse está sobre ele */
+    .balao:hover {
+      width: 195px;
+      height: 195px;
+    }
+
+    /* Estilizando o balão quando está expandido */
+    .balao.expandido {
+      width: 210px;
+      height: 210px;
+    }
+
+    /* Estilizando o balão com cor vermelha */
+    .balao.vermelho {
+      background-color: red;
+    }
+
+    /* Estilizando o balão com cor verde */
+    .balao.verde {
+      background-color: green;
+    }
+
+    /* Estilizando o balão com cor azul */
+    .balao.azul {
+      background-color: blue;
+    }

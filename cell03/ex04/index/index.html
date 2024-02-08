@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gerenciador de Tarefas</title>
+  <style>
+    /* Estilo simples para a lista de tarefas */
+    #ft_list {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      max-width: 300px;
+    }
+
+    /* Estilo para cada tarefa */
+    .task {
+      background-color: #f4f4f4;
+      padding: 8px;
+      margin: 5px 0;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="ft_list"></div>
+
+  <!-- Botão para adicionar tarefa -->
+  <button onclick="adicionarTarefa()">Adicionar Tarefa</button>
+
+  <script>
+    // Carregar a lista de tarefas salva como cookie ao iniciar a página
+    window.onload = function() {
+      carregarListaTarefas();
+    };
+
+    // Função para adicionar uma nova tarefa
+    function adicionarTarefa() {
+      const novaTarefa = prompt("Digite a nova tarefa:");
+      if (novaTarefa !== null && novaTarefa !== "") {
+        // Criar um novo elemento div para representar a tarefa
+        const divTarefa = document.createElement("div");
+        divTarefa.className = "task";
+        divTarefa.textContent = novaTarefa;
+
+        // Adicionar evento de clique para remover a tarefa
+        divTarefa.addEventListener("click", function() {
+          removerTarefa(divTarefa);
+        });
+
+        // Adicionar a nova tarefa no topo da lista
+        const listaTarefas = document.getElementById("ft_list");
+        listaTarefas.insertBefore(divTarefa, listaTarefas.firstChild);
+
+        // Salvar a lista de tarefas como cookie
+        salvarListaTarefas();
+      }
+    }
+
+    // Função para remover uma tarefa
+    function removerTarefa(tarefa) {
+      const confirmacao = confirm("Deseja remover esta tarefa?");
+      if (confirmacao) {
+        tarefa.remove();
+
+        // Salvar a lista de tarefas como cookie após remover uma tarefa
+        salvarListaTarefas();
+      }
+    }
+
+    // Função para salvar a lista de tarefas como cookie
+    function salvarListaTarefas() {
+      const listaTarefas = document.getElementById("ft_list").innerHTML;
+      document.cookie = "tarefas=" + encodeURIComponent(listaTarefas);
+    }
+
+    // Função para carregar a lista de tarefas do cookie
+    function carregarListaTarefas() {
+      const cookieValue = document.cookie.replace(/(?:(?:^|.*;\s*)tarefas\s*=\s*([^;]*).*$)|^.*$/, "$1");
+      if (cookieValue) {
+        const listaTarefas = document.getElementById("ft_list");
+        listaTarefas.innerHTML = decodeURIComponent(cookieValue);
+        // Adicionar evento de clique para remover a tarefa após carregar
+        const tarefas = document.querySelectorAll(".task");
+        tarefas.forEach(function(tarefa) {
+          tarefa.addEventListener("click", function() {
+            removerTarefa(tarefa);
+          });
+        });
+      }
+    }
+  </script>
+
+</body>
+</html>

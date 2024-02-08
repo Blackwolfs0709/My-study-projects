@@ -1,0 +1,18 @@
+body {
+    padding-top: 56px; /* Para compensar a altura da barra de navegação fixa */
+  }
+
+  .navbar {
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+  }
+
+  .resume-section {
+    padding: 60px 0;
+  }
+
+  .col-lg-4{
+    height: 20%;
+    width: 20%;
+  }

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Balloon</title>
+    <link rel="stylesheet" type="text/css" href="balloon.css">
+  
+</head>
+<body>
+
+
+<div class="balao" onclick="cliqueNoBalao()" onmouseover="entrouNoBalao()" onmouseout="saiuDoBalao()"></div>
+
+<script>
+  // Variáveis para armazenar o tamanho atual e a cor atual do balão
+  let tamanhoAtual = 200;
+  let corAtual = 'vermelho';
+
+  // Função chamada quando o balão é clicado
+  function cliqueNoBalao() {
+    // Verifica se o tamanho atual é menor que 420 para evitar "explosão"
+    if (tamanhoAtual < 420) {
+      tamanhoAtual += 10; // Aumenta o tamanho em 10 pixels
+      mudarCor(); // Chama a função para mudar a cor
+    } 
+    else {
+      tamanhoAtual = 200; // Retorna ao tamanho original se atingir 420 pixels
+      corAtual = 'vermelho'; // Reinicia a cor para vermelho
+    }
+
+    atualizarEstilo(); // Atualiza o estilo do balão
+  }
+
+  // Função chamada quando o mouse entra no balão
+  function entrouNoBalao() {
+    tamanhoAtual -= 5; // Diminui o tamanho em 5 pixels
+    if (tamanhoAtual < 200) {
+      tamanhoAtual = 200; // Garante que o tamanho não seja menor que 200 pixels
+    }
+
+    mudarCor(); // Chama a função para mudar a cor
+    atualizarEstilo(); // Atualiza o estilo do balão
+  }
+
+  // Função chamada quando o mouse sai do balão
+  function saiuDoBalao() {
+    tamanhoAtual -= 5; // Diminui o tamanho em 5 pixels
+    if (tamanhoAtual < 200) {
+      tamanhoAtual = 200; // Garante que o tamanho não seja menor que 200 pixels
+    }
+
+    mudarCor(); // Chama a função para mudar a cor
+    atualizarEstilo(); // Atualiza o estilo do balão
+  }
+
+  // Função para mudar a cor do balão em uma sequência específica
+  function mudarCor() {
+    switch (corAtual) {
+      case 'vermelho':
+        corAtual = 'verde';
+        break;
+      case 'verde':
+        corAtual = 'azul';
+        break;
+      case 'azul':
+        corAtual = 'vermelho';
+        break;
+    }
+  }
+
+  // Função para atualizar o estilo do balão com base nas variáveis
+  function atualizarEstilo() {
+    const balao = document.querySelector('.balao'); // Seleciona o elemento do balão
+    balao.style.width = tamanhoAtual + 'px'; // Define a largura do balão
+    balao.style.height = tamanhoAtual + 'px'; // Define a altura do balão
+    balao.classList.remove('vermelho', 'verde', 'azul'); // Remove classes de cores
+    balao.classList.add(corAtual); // Adiciona a classe de cor atual
+    if (tamanhoAtual > 200) {
+      balao.classList.add('expandido'); // Adiciona a classe 'expandido' se o tamanho for maior que 200 pixels
+    } else {
+      balao.classList.remove('expandido'); // Remove a classe 'expandido' se o tamanho for 200 pixels ou menos
+    }
+  }
+</script>
+
+</body>
+</html>
